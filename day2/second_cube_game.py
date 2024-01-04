@@ -9,11 +9,21 @@ max_val = {
     "blue" : 14,
     }
 
-count = 0
+min_cube = {
+    "red" : 0,
+    "green" : 0,
+    "blue" : 0,
+}
+
+power_count = 0
+
 
 input_file = open("input.txt", 'r')
 for line in input_file:
   valid_game = 1
+  for i in min_cube:
+    min_cube[i] = 0 
+  
   game_id, contents = line.split(":")
   game_id = game_id.split()[1]
   
@@ -29,9 +39,15 @@ for line in input_file:
         valid_game = valid_game * 0
       else:
         valid_game = valid_game * 1
-  if valid_game == 1:
-    count = count + int(game_id)
-    print(game_id)
+      if min_cube[color] < int(cube_num):
+        min_cube[color] = int(cube_num)
+  
+  min_power = 1 
+  for i in min_cube:
+    min_power = min_power * min_cube[i]
+  #if valid_game == 1:
+  power_count = power_count + min_power
+  print(min_power)
 
   '''for i in enumerate(round_id):
     #print(cube_val)
@@ -42,4 +58,4 @@ for line in input_file:
       print(color)
 
 '''
-print(count)
+print(power_count)
