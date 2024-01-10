@@ -6,9 +6,9 @@
 # we need to detect when a number starts, when it finishes, and copy the number in case we want to add it to the sum
 
 def check_adjacent(row, col):
-  for i in range(-1, 2):
-    for j in range(-1, 2):
-      if (col + j >= num_cols or col + j < 0) or (row + i >= num_rows or row + i < 0):
+  for i in [-1, 0, 1]:
+    for j in [-1, 0, 1]:
+      if ((col + j) >= num_cols or (col + j) < 0) or (row + i >= num_rows or row + i < 0):
         continue
       pos = gear_map[row + i][col + j]
       if not (pos.isdigit() or pos == '.'):
